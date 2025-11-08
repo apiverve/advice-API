@@ -16,19 +16,21 @@ const api = new adviceAPI({
 // Example query
 // This API does not require a Query
 
-// Make the API request
-async function main() {
-    try {
-        console.log('Making request to Advice Generator API...\n');
-        const data = await api.execute(query);
-        console.log('Response:');
-        console.log(JSON.stringify(data, null, 2));
-    } catch (error) {
-        console.error('Error:', error.message);
-        if (error.response && error.response.data) {
-            console.error('API Error:', error.response.data);
-        }
-    }
-}
+// Make the API request using callback
+console.log('Making request to Advice Generator API...\n');
 
-main();
+api.execute(function (error, data) {
+    if (error) {
+        console.error('Error occurred:');
+        if (error.error) {
+            console.error('Message:', error.error);
+            console.error('Status:', error.status);
+        } else {
+            console.error(JSON.stringify(error, null, 2));
+        }
+        return;
+    }
+
+    console.log('Response:');
+    console.log(JSON.stringify(data, null, 2));
+});
