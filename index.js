@@ -86,13 +86,22 @@ class adviceWrapper {
             if (callback) callback(null, data);
             return data;
         } catch (error) {
+            let apiError;
+
             if (error.response && error.response.data) {
-                if (callback) callback(error.response.data, null);
-                throw error.response.data;
+                apiError = error.response.data;
+            } else if (error.message) {
+                apiError = { error: error.message, status: 'error' };
             } else {
-                if (callback) callback(error, null);
-                throw error;
+                apiError = { error: 'An unknown error occurred', status: 'error' };
             }
+
+            if (callback) {
+                callback(apiError, null);
+                return; // Don't throw if callback is provided
+            }
+
+            throw apiError;
         }
     }
 
