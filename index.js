@@ -4,14 +4,27 @@ class adviceWrapper {
 
     constructor(options) {
         if (!options || typeof options !== 'object') {
-            throw new Error('Options object must be provided.');
+            throw new Error('Options object must be provided. See documentation: https://docs.apiverve.com/ref/advice');
         }
 
         const { api_key, secure = true } = options;
 
         if (!api_key || typeof api_key !== 'string') {
-            throw new Error('API key must be provided as a non-empty string.');
+            throw new Error('API key must be provided as a non-empty string. Get your API key at: https://apiverve.com');
         }
+
+        // Validate API key format (GUID or alphanumeric with hyphens)
+        const apiKeyPattern = /^[a-zA-Z0-9-]+$/;
+        if (!apiKeyPattern.test(api_key)) {
+            throw new Error('Invalid API key format. API key must be alphanumeric and may contain hyphens. Get your API key at: https://apiverve.com');
+        }
+
+        // Check minimum length (GUIDs are typically 36 chars with hyphens, or 32 without)
+        const trimmedKey = api_key.replace(/-/g, '');
+        if (trimmedKey.length < 32) {
+            throw new Error('Invalid API key. API key appears to be too short. Get your API key at: https://apiverve.com');
+        }
+
         if (typeof secure !== 'boolean') {
             throw new Error('Secure parameter must be a boolean value.');
         }
@@ -24,20 +37,32 @@ class adviceWrapper {
     }
 
     async execute(query, callback) {
-        if(arguments.length > 1) {
+        // Handle different argument patterns
+        if(arguments.length === 0) {
+            // execute() - no args
+            query = {};
+            callback = null;
+        } else if(arguments.length === 1) {
+            if (typeof query === 'function') {
+                // execute(callback)
+                callback = query;
+                query = {};
+            } else {
+                // execute(query)
+                callback = null;
+            }
+        } else {
+            // execute(query, callback)
             if (!query || typeof query !== 'object') {
                 throw new Error('Query parameters must be provided as an object.');
             }
-        } else {
-            callback = query;
-            query = {};
         }
 
         var requiredParams = [];
         if (requiredParams.length > 0) {
             for (var i = 0; i < requiredParams.length; i++) {
                 if (!query[requiredParams[i]]) {
-                    throw new Error(`Required parameter [${requiredParams[i]}] is missing.`);
+                    throw new Error(`Required parameter [${requiredParams[i]}] is missing. See documentation: https://docs.apiverve.com/ref/advice`);
                 }
             }
         }
@@ -58,16 +83,16 @@ class adviceWrapper {
             });
 
             const data = response.data;
-            callback(null, data);
+            if (callback) callback(null, data);
             return data;
         } catch (error) {
-            if (error.response.data) {
-                callback(error.response.data, null);
+            if (error.response && error.response.data) {
+                if (callback) callback(error.response.data, null);
                 throw error.response.data;
             } else {
-                callback(error, null);
+                if (callback) callback(error, null);
                 throw error;
-            }          
+            }
         }
     }
 
