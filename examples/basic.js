@@ -1,25 +1,25 @@
 /**
- * Basic Example - {{title}} API
+ * Basic Example - Advice Generator API
  *
- * This example demonstrates how to use the {{title}} API.
+ * This example demonstrates how to use the Advice Generator API.
  * Make sure to set your API key in the .env file or replace '[YOUR_API_KEY]' below.
  */
 
 require('dotenv').config();
-const {{apid}}API = require('../index.js');
+const adviceAPI = require('../index.js');
 
 // Initialize the API client
-const api = new {{apid}}API({
+const api = new adviceAPI({
     api_key: process.env.API_KEY || '[YOUR_API_KEY]'
 });
 
 // Example query
-{{exampleQuery}}
+// This API does not require a Query
 
 // Make the API request
 async function main() {
     try {
-        console.log('Making request to {{title}} API...\n');
+        console.log('Making request to Advice Generator API...\n');
         const data = await api.execute(query);
         console.log('Response:');
         console.log(JSON.stringify(data, null, 2));
