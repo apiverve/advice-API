@@ -1,24 +1,26 @@
 {
   "name": "@apiverve/advice",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Advice Generator is a simple tool for generating random pieces of advice. It returns a random piece of advice.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "example": "node examples/basic.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apiverve/advice-API.git"
   },
   "keywords": [
-    "advice generator","advice generation","advice generate","advice api","advice tool"
+    "advice generator", "advice generation", "advice generate", "advice api", "advice tool"
   ],
   "author": "APIVerve <hello@apiverve.com> (http://apiverve.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/apiverve/advice-API/issues"
   },
-  "homepage": "https://apiverve.com/marketplace/api/advice?utm_source=npm",
+  "homepage": "https://apiverve.com/marketplace/advice?utm_source=npm",
   "devDependencies": {
     "mocha": "^11.0.1",
     "chai": "^5.1.2",
@@ -27,6 +29,6 @@
   "dependencies": {
     "node-fetch": "^3.3.2",
     "promise": "^8.3.0",
-    "axios": "1.7.9"
+    "axios": "1.8.4"
   }
 }
