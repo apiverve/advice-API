@@ -1,154 +1,189 @@
 # Advice Generator API
 
-Advice Generator is a simple tool for generating random pieces of advice. It returns a random piece of advice.
+> Advice Generator is a simple tool for generating random pieces of advice. It returns a random piece of advice.
 
-![Build Status](https://img.shields.io/badge/build-passing-green)
-![Code Climate](https://img.shields.io/badge/maintainability-B-purple)
-![Prod Ready](https://img.shields.io/badge/production-ready-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![API Status](https://img.shields.io/badge/Status-Active-green.svg)](https://apiverve.com)
+[![Method](https://img.shields.io/badge/Method-GET-blue.svg)](#)
+[![Platform](https://img.shields.io/badge/Platform-Multi--Platform-orange.svg)](#installation)
 
-This is a Javascript Wrapper for the [Advice Generator API](https://apiverve.com/marketplace/advice)
-
----
-
-## Installation
-
-Using npm:
-```shell
-npm install @apiverve/advice
-```
-
-Using yarn:
-```shell
-yarn add @apiverve/advice
-```
-
----
-
-## Configuration
-
-Before using the Advice Generator API client, you have to setup your account and obtain your API Key.
-You can get it by signing up at [https://apiverve.com](https://apiverve.com)
+**Available on:**
+[![npm](https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white)](https://www.npmjs.com/package/@apiverve/advice)
+[![NuGet](https://img.shields.io/badge/NuGet-004880?style=flat&logo=nuget&logoColor=white)](https://www.nuget.org/packages/APIVerve.API.AdviceGenerator)
+[![PyPI](https://img.shields.io/badge/PyPI-3776AB?style=flat&logo=python&logoColor=white)](https://pypi.org/project/apiverve-advice/)
+[![CocoaPods](https://img.shields.io/badge/CocoaPods-EE3322?style=flat&logo=cocoapods&logoColor=white)](#-cocoapods-iosmacos)
+[![JitPack](https://img.shields.io/badge/JitPack-2E7D32?style=flat&logo=android&logoColor=white)](#-android-jitpack)
 
 ---
 
 ## Quick Start
 
-[Get started with the Quick Start Guide](https://docs.apiverve.com/quickstart)
-
-The Advice Generator API documentation is found here: [https://docs.apiverve.com/ref/advice](https://docs.apiverve.com/ref/advice).
-You can find parameters, example responses, and status codes documented here.
-
-### Setup
+### Using JavaScript
 
 ```javascript
-const adviceAPI = require('@apiverve/advice');
-const api = new adviceAPI({
-    api_key: '[YOUR_API_KEY]'
-});
-```
-
----
-
-## Usage
-
----
-
-### Perform Request
-
-Using the API is simple. All you have to do is make a request. The API will return a response with the data you requested.
-
-```javascript
-// This API does not require a Query
-
-api.execute(function (error, data) {
-    if (error) {
-        return console.error(error);
-    } else {
-        console.log(data);
-    }
-});
-```
-
----
-
-### Using Promises
-
-You can also use promises to make requests. The API returns a promise that you can use to handle the response.
-
-```javascript
-// This API does not require a Query
-
-api.execute(query)
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error(error);
-    });
-```
-
----
-
-### Using Async/Await
-
-You can also use async/await to make requests. The API returns a promise that you can use to handle the response.
-
-```javascript
-async function makeRequest() {
-    // This API does not require a Query
-
+async function callAdviceGeneratorAPI() {
     try {
-        const data = await api.execute(query);
+        const response = await fetch(&#x27;https://api.apiverve.com/v1/advice&#x27;, {
+            method: 'GET',
+            headers: {
+                'x-api-key': 'YOUR_API_KEY_HERE'
+            }
+        });
+
+        const data = await response.json();
         console.log(data);
     } catch (error) {
-        console.error(error);
+        console.error('Error:', error);
     }
 }
+
+callAdviceGeneratorAPI();
 ```
+
+### Using cURL
+
+```bash
+curl -X GET "https://api.apiverve.com/v1/advice?param=value" \
+  -H "x-api-key: YOUR_API_KEY_HERE"
+```
+
+**Get your API key:** [https://apiverve.com](https://apiverve.com)
+
+**📁 For more examples, see the [examples folder](./examples/)**
 
 ---
 
-## Example Response
+## Installation
 
+Choose your preferred programming language:
+
+### 📦 NPM (JavaScript/Node.js)
+
+```bash
+npm install @apiverve/advice
+```
+
+[**View NPM Package →**](https://www.npmjs.com/package/@apiverve/advice) | [**Package Code →**](./npm/)
+
+---
+
+### 🔷 NuGet (.NET/C#)
+
+```bash
+dotnet add package APIVerve.API.AdviceGenerator
+```
+
+[**View NuGet Package →**](https://www.nuget.org/packages/APIVerve.API.AdviceGenerator) | [**Package Code →**](./nuget/)
+
+---
+
+### 🐍 Python (PyPI)
+
+```bash
+pip install apiverve-advice
+```
+
+[**View PyPI Package →**](https://pypi.org/project/apiverve-advice/) | [**Package Code →**](./python/)
+
+---
+
+### 🍎 CocoaPods (iOS/macOS)
+
+```ruby
+pod 'APIVerveAdviceGenerator', '~> 1.0'
+```
+
+[**Package Code →**](./cocoapods/)
+
+---
+
+### 🤖 Android (JitPack)
+
+```gradle
+implementation 'com.github.apiverve:advice-api:1.0.0'
+```
+
+[**Package Code →**](./android/)
+
+---
+
+## Features
+
+✅ **Multi-platform support** - Use the same API across Node.js, .NET, Python, iOS/macOS, Android, and browsers
+✅ **Simple authentication** - Just add your API key in the request header
+✅ **Comprehensive documentation** - Full examples and API reference available
+✅ **Production-ready** - Used by developers worldwide
+
+---
+
+## Documentation
+
+📚 **Full API Documentation:** [https://docs.apiverve.com/ref/advice](https://docs.apiverve.com/ref/advice)
+
+---
+
+## Use Cases
+
+Common use cases for the Advice Generator API:
+
+- ✅ Integration into web applications
+- ✅ Mobile app development
+- ✅ Data analysis and reporting
+- ✅ Automation workflows
+- ✅ Microservices architecture
+
+---
+
+## API Reference
+
+### Authentication
+All requests require an API key in the header:
+```
+x-api-key: YOUR_API_KEY_HERE
+```
+
+Get your API key: [https://apiverve.com](https://apiverve.com)
+
+### Response Format
+All responses are JSON with this structure:
 ```json
 {
   "status": "ok",
-  "error": null,
-  "data": {
-    "id": "1t39qBIy",
-    "advice": "Seek ways to improve your financial literacy and make sound financial decisions.",
-    "lang": "en"
-  }
+  "data": { ... }
 }
 ```
 
 ---
 
-## Customer Support
+## Support & Community
 
-Need any assistance? [Get in touch with Customer Support](https://apiverve.com/contact).
-
----
-
-## Updates
-
-Stay up to date by following [@apiverveHQ](https://twitter.com/apiverveHQ) on Twitter.
+- 💬 **Support**: [https://apiverve.com/contact](https://apiverve.com/contact)
+- 🐛 **Issues**: [GitHub Issues](../../issues)
+- 📖 **Documentation**: [https://docs.apiverve.com](https://docs.apiverve.com)
+- 🌐 **Website**: [https://apiverve.com](https://apiverve.com)
 
 ---
 
-## Legal
+## Contributing
 
-All usage of the APIVerve website, API, and services is subject to the [APIVerve Terms of Service](https://apiverve.com/terms) and all legal documents and agreements.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+---
+
+## Security
+
+For security concerns, please review our [Security Policy](SECURITY.md).
 
 ---
 
 ## License
-Licensed under the The MIT License (MIT)
 
-Copyright (&copy;) 2025 APIVerve, and Evlar LLC
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+---
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+## Acknowledgments
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Built with ❤️ by [APIVerve](https://apiverve.com)
+
+Copyright © 2025 APIVerve. All rights reserved.
