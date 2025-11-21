@@ -23,7 +23,7 @@
 ```javascript
 async function callAdviceGeneratorAPI() {
     try {
-        const response = await fetch(&#x27;https://api.apiverve.com/v1/advice&#x27;, {
+        const response = await fetch('https://api.apiverve.com/v1/advice', {
             method: 'GET',
             headers: {
                 'x-api-key': 'YOUR_API_KEY_HERE'
